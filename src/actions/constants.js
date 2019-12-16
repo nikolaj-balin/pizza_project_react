@@ -1,0 +1,13 @@
+const constants = {
+    SORT_WORKER: "SORT_WORKER",
+    ADD_WORKER: "ADD_WORKER",
+    EDIT_WORKER: "EDIT_WORKER",
+    REMOVE_WORKER: "REMOVE_WORKER",
+    SEARCH_WORKER: "SEARCH_WORKER",
+    FILTER: "FILTER",
+    SEARCH_ROLE: "SEARCH_ROLE",
+    CLEAR_FILTER: "CLEAR_FILTER",
+}
+
+
+export default constants;

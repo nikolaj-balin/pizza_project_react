@@ -1,0 +1,178 @@
+$header_font: 2rem;
+$margin_rigcht: 0.7rem;
+$height_search: 3rem;
+$font_family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+
+@mixin flex_centr_centr () {
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+}
+
+
+body {
+
+	 margin: 0;
+    padding: 0;
+    background-color: #d5d8d7;
+
+	* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $font_family;
+
+ }
+
+    #root {
+		
+
+		#header {
+			font-family: $font_family;
+			@include flex_centr_centr();
+		   padding-top: 0.5rem;
+		   padding-bottom: 0.5rem;
+
+			h1 {
+				text-align: center;
+				@include flex_centr_centr();
+				font-size: $header_font;
+			}
+		}
+
+
+		.FilterForm {
+
+			@include flex_centr_centr();
+			padding: 0.8rem 0.8rem;
+			color: #000;
+			border-top: 2px solid #b3acac;
+    		border-bottom: 2px solid #b3acac;
+
+			form {
+				@include flex_centr_centr();
+				font-size: 1.2rem;
+				flex-wrap: wrap;
+				width: 100%;
+
+
+				.isArchive {
+
+					font-weight: bold;				
+
+					span {
+						margin-right: $margin_rigcht;
+					}
+
+					label {
+
+						margin-right: $margin_rigcht;
+						font-weight: 100;
+
+						input {
+							margin-right: $margin_rigcht;
+						}
+					}
+
+				}
+
+				.junior {
+					font-weight: bold;
+					span {
+						margin-right: $margin_rigcht;
+					}
+
+					label {
+						margin-right: $margin_rigcht;
+						font-weight: 100;
+					}
+
+					input {
+						margin-right: $margin_rigcht;
+					}
+				}
+
+				.user_search_form {					
+						 font-weight: bold;
+						 width: 100%;
+					    margin-bottom: 0.8rem;
+					    display: inline-flex;
+					    align-items: center;
+					    justify-content: center;
+					    height: 1.9rem;
+					input {
+						margin-left: $margin_rigcht;
+						flex-grow: 2;
+						height: 100%;
+						max-width: 706px;
+						padding: 0.3rem;
+
+						
+
+						&:focus {
+							border: none;
+							outline: none;
+							border: 2px solid #a5a5a5;
+						}
+						
+					}
+				}
+
+				input[type='button'] {
+					font-size: 1.0rem;
+					background-color: #6f838c;
+				    color: #fff;
+				    font-weight: 600;
+				    outline: none;
+				    border: none;
+				    cursor: pointer;
+				    display: inline-flex;
+				    align-items: center;
+				    justify-content: center;
+				    padding: 0.5rem 0.7rem;
+    				 line-height: 1;
+				}
+			}
+		}
+    	
+		.ListWorkers {
+
+			padding: 0.8rem;
+			background-color: #ccc;
+
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				background-color: #d5d8d7;
+				th {
+					height: 2rem;
+					border-bottom: 1px solid #b3acac;
+				}	
+
+				tbody {
+
+					tr {
+
+						td {
+						padding: 0.5rem;
+						text-align: center;
+						border-bottom: 1px solid #b3acac;
+						cursor: pointer;
+
+						
+						}
+
+						&:hover {
+							background-color: #ccc;
+						}
+					}
+					
+				}			
+
+				
+			}
+		}
+    } 
+}
