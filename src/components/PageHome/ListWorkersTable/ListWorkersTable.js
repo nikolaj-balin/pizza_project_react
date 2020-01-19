@@ -28,24 +28,45 @@ const ListWorkers = () => {
     arrList = get_sort_arr(arrList, store_);
 
     return (
-        arrList.map((n, i) => (
-            <li key={n.id}>
-				<div><span>{translatorRU_tableHeader[key[1]]}</span><span>{n.name}</span></div>
-				<div><span>{translatorRU_tableHeader[key[5]]}</span><span>{n.birthday}</span></div>
-				<div><span>{translatorRU_tableHeader[key[4]]}</span><span>{n.phone}</span></div>
-				<div><span>{translatorRU_tableHeader[key[3]]}</span><span>{translatorRU_role[n.role]}</span></div>
-				<div><span>{translatorRU_tableHeader[key[2]]}</span><SpanArchiv flag={n.isArchive}></SpanArchiv></div>
-                <button onClick={() => history.push(`/edit/${n.id}`)}>Редактировать</button>
-                
-			</li>
-        ))
+        <ul className="list">
+            {arrList.map((n, i) => (
+                <li key={n.id}>
+                    <div className="avatar_worker"></div>
+                    <div className={'worker_list'}>
+                        <div className='name_worker' title={translatorRU_tableHeader[key[1]]}>
+                            <span className={'label'}></span>
+                            <span>{n.name}</span>
+                        </div>
+                        <div className='birthday_worker' title={translatorRU_tableHeader[key[5]]}>
+                            <span className={'label'}></span>
+                            <span>{n.birthday}</span>
+                        </div>
+                        <div className='phone_worker' title={translatorRU_tableHeader[key[4]]}>
+                            <span className={'label'}></span>
+                            <span>{n.phone}</span>
+                        </div>
+                        <div className='role_worker' title={translatorRU_tableHeader[key[3]]}>
+                            <span className={'label'}></span>
+                            <span>{translatorRU_role[n.role]}</span>
+                        </div>
+                        <div className='isArchive_worker' title={translatorRU_tableHeader[key[2]]}>
+                            <span className={'label'} ></span>
+                            <SpanArchiv flag={n.isArchive}></SpanArchiv>
+                        </div>
+                    </div>
+                    <button className='button_edit_worker' onClick={() => history.push(`/edit/${n.id}`)}>Редактировать</button>
+
+                </li>
+            ))}
+        </ul>
+
 
     );
 };
 
-const ListWorkersTable = () => {
+const ListWorkersTable = (props) => {
     return (
-        <section className="ListWorkers">
+        <section className="ListWorkers" {...props}>
             <ListWorkers />
     	</section>
     )
