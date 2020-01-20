@@ -10,7 +10,7 @@ const InputSearch = () => {
 	const search_state = useSelector(state => {return { ...state.search }});
 
 	return (
-		<label className='user_search_form'>Пользователь:<input placeholder="Пётр Иванов" name="searchname" type="search" onChange={dispatch_starting} value={search_state.name} autoComplete="off" /></label>
+		<label className='user_search_form'><input placeholder="Поиск по имени" name="searchname" type="search" onChange={dispatch_starting} value={search_state.name} autoComplete="off" /></label>
 )};
 
 export {InputSearch};

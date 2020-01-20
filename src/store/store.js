@@ -10,7 +10,12 @@ const data = () => {
     					isArchive: [],
     					role: []
     				},
-    				sort: 'none'
+    				sort: 'none',
+					state_panel: {
+						isArchive: 0,
+						role: 0,
+						sort: 0,
+					}
     			};
 };
 

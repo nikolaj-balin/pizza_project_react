@@ -31,7 +31,7 @@ const FormEditWorkers = (props) => {
     }, []);
 
     let handleSubmit = (e) => {
-        event.preventDefault();
+        e.preventDefault();
 
         if (verifying_form(elementsFormValue, setVerifyingValue)) {
             return;
@@ -65,78 +65,87 @@ const FormEditWorkers = (props) => {
 
 
     return (
-        <form onSubmit={handleSubmit}>        
-        <label title="Пользователь:">Пользователь:
-        		<input autoComplete="off" 
-        				 type="text" 
-        				 name="name" 
-        				 value={elementsFormValue.name} 
-        				 placeholder="Введите фамилию и имя сотрудника" 
-        				 onChange={_onChange} 
-        				 onFocus={verifying_el} 
-        				 onBlur={verifying_el} />
-        	</label>
-        {stateVerifyingValue.name && <span>Имя заполнено не верно</span>}
+        <div className={'readForm'}>
+            <form onSubmit={handleSubmit}>
+                <div className={'userfield' + (stateVerifyingValue.name ? ' error' : '')}>
+                    <input autoComplete="off"
+                           type="text"
+                           name="name"
+                           value={elementsFormValue.name}
+                           placeholder="Фамилия и имя сотрудника"
+                           onChange={_onChange}
+                           onFocus={verifying_el}
+                           onBlur={verifying_el}
+                    />
+                    {stateVerifyingValue.name && <span className={'errorinfotext'}>Имя заполнено не верно</span>}
+                </div>
+                <div className={'datefield'  + (stateVerifyingValue.birthday ? ' error' : '')}>
+                    <MaskedInput autoComplete="off"
+                                 mask="11.11.1111"
+                                 placeholder="Дата рождения"
+                                 size="17"
+                                 name="birthday"
+                                 value={elementsFormValue.birthday}
+                                 onChange={_onChange}
+                                 onFocus={verifying_el}
+                                 onBlur={verifying_el}
+                    />
+                    {stateVerifyingValue.birthday && <span className={'errorinfotext'}>Дата заполнена не верно</span>}
+                </div>
+                <div className={'phonefield'  + (stateVerifyingValue.phone ? ' error' : '')}>
+                    <MaskedInput autoComplete="off"
+                                 type="tel"
+                                 placeholder="Телефон"
+                                 mask="+7 (111) 111-11-11"
+                                 name="phone"
+                                 size="17"
+                                 value={elementsFormValue.phone}
+                                 onChange={_onChange}
+                                 onFocus={verifying_el}
+                                 onBlur={verifying_el} />
+                    {stateVerifyingValue.phone && <span className={'errorinfotext'}>Телефон заполнена не верно</span>}
+                </div>
+                <div className={'rolefields'}>
+                    <label title="Должность" >Должность:</label>
+                    <select name="role"
+                            defaultValue={elementsFormValue.role}
+                            placeholder="Выберите должность"
+                            onChange={_onChange}>
 
-        <label title="Дата Рождения:">Дата рождения:
-        		<MaskedInput autoComplete="off" 
-	  						 mask="11.11.1111" 
-	  						 size="17" 
-	  						 name="birthday" 
-	  						 value={elementsFormValue.birthday} 
-	  						 onChange={_onChange} 
-	  						 onFocus={verifying_el} 
-	  						 onBlur={verifying_el} />
-        	</label>
-        {stateVerifyingValue.birthday && <span>Дата заполнена не верно</span>}
+                        <option key="driver"
+                                value="driver">
+                            {translatorRU_role['driver']}
+                        </option>
+                        <option key="waiter"
+                                value="waiter">
+                            {translatorRU_role['waiter']}
+                        </option>
+                        <option key="cook"
+                                value="cook">
+                            {translatorRU_role['cook']}
+                        </option>
+                    </select>
+                </div>
+                <div className={'archivefield'}>
+                    <span className={'icon'}>В архиве:</span>
+                    <input autoComplete="off"
+                           type="checkbox"
+                           id={'archive_el'}
+                           name="isArchive"
+                           defaultChecked={elementsFormValue.isArchive}
+                           onChange={_onChange_}
+                    />
+                    <label htmlFor={'archive_el'} title="В архиве" ></label>
+                </div>
+                <div className={'save'}>
+                    <input name="id" type="hidden" defaultValue={id} />
+                    <input type="submit" value="Сохранить"  />
+                    <input type="button" value="Отмена" onClick={cancelEdit} className={'cancel'} />
+                </div>
 
-        <label title="Телефон">Телефон:
-        		<MaskedInput autoComplete="off" 
-    						 type="tel" 
-    						 mask="+7 (111) 111-11-11" 
-    						 name="phone" 
-    						 size="17" 
-    						 placeholder="+7 (___) ___-__-__" 
-    						 value={elementsFormValue.phone} 
-    						 onChange={_onChange} 
-    						 onFocus={verifying_el} 
-    						 onBlur={verifying_el} />
-        </label>
-        {stateVerifyingValue.phone && <span>Телефон заполнена не верно</span>}
-
-        <label title="Должность">Должность:
-          <select name="role" 
-          			defaultValue={elementsFormValue.role} 
-          			placeholder="Выберите должность" 
-          			onChange={_onChange}>
-
-	            <option key="driver" 
-	            		  value="driver">
-	            		  {translatorRU_role['driver']}
-	            </option>
-	            <option key="waiter" 
-	            		  value="waiter">
-	            		  {translatorRU_role['waiter']}
-	            </option>
-	            <option key="cook" 
-	             		  value="cook">
-	             		  {translatorRU_role['cook']}
-	            </option>
-          </select>
-        </label>
-
-        <label title="В архиве">В архиве:
-        			<input autoComplete="off" 
-        					 type="checkbox" 
-        					 name="isArchive" 
-        					 defaultChecked={elementsFormValue.isArchive} 
-        					 onChange={_onChange} />
-        	</label>
-
-        <input name="id" type="hidden" defaultValue={id} />
-        <input type="submit" value="Сохранить" />
-        <input type="button" value="Отмена" onClick={cancelEdit} />
-    </form>)};
+            </form>
+        </div>
+        )};
 
 
 FormEditWorkers.propTypes = {

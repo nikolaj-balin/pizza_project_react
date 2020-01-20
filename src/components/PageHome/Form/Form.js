@@ -6,18 +6,18 @@ import { Junior } from './Junior.js';
 import { Sort } from './Sort.js';
 
 
-const Form = () => {
+const Form = (props) => {
 
 	let history = useHistory();
 
 	return (
-		<aside className="FilterForm">			 
+		<aside className="FilterForm" {...props}>
 		    <form>
 		    		<InputSearch />
 					<InputCheckboxArchive />
 				   <Junior />
 				   <Sort />
-				   <input type="button" onClick={() => history.push(`/edit/0`)} value="Добавить сотрудника"/>
+				   <input className='form_submit' type="button" onClick={() => history.push(`/edit/0`)} value="Добавить сотрудника"/>
 			 </form>
 		</aside>
 	)

@@ -42,7 +42,16 @@ const editWorkersEditStore = (store, action) => {
 		n.isArchive = action.isArchive;
 	}});
 	
-		return {...store_, search: { name: "",	isArchive: [],	role: [] }, sort: 'none'};
+		return {
+			...store_,
+			search: { name: "",	isArchive: [],	role: [] },
+			sort: 'none',
+			state_panel: {
+				isArchive: 0,
+				role: 0,
+				sort: 0,
+			}
+		};
 	
 };
 
@@ -60,7 +69,17 @@ const addWorkersEditStore = (store, action) => {
 
 	};
 
-	let store__ = {...store, data: [...store_.data, obj_new], search: { name: "",	isArchive: [],	role: [] }, sort: 'none'};
+	let store__ = {
+				...store,
+				data: [...store_.data, obj_new],
+				search: { name: "",	isArchive: [],	role: [] },
+				sort: 'none',
+				state_panel: {
+					isArchive: 0,
+					role: 0,
+					sort: 0,
+				}
+	};
 
 		return store__;
 	
@@ -71,6 +90,26 @@ const filterStore = (store, action) => {
 	let store_ = {...store};
 
 	store_.sort = action.value;
+
+	return store_;
+};
+
+const clearStatePanel = (store, action) => {
+
+	let store_ = {...store};
+
+	store_.state_panel = {isArchive: 0,	role: 0, sort: 0 };
+
+	store_.state_panel[action.name] = (action.value == 0 ? 1 : 0);
+
+	return store_;
+};
+
+const clearStatePanelClear = (store, action) => {
+
+	let store_ = {...store};
+
+	store_.state_panel = {isArchive: 0,	role: 0, sort: 0 };
 
 	return store_;
 };
@@ -98,6 +137,13 @@ const reduser_props = (store=[], action) => {
 
 		case C.CLEAR_FILTER:
 				return clearFilter(store, action);
+			break;
+
+		case C.STATE_PANEL:
+				return clearStatePanel(store, action);
+			break;
+		case C.STATE_PANEL_CLEAR:
+				return clearStatePanelClear(store, action);
 			break;
 
 		default:
