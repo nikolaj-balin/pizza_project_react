@@ -105,40 +105,37 @@ const FormEditWorkers = (props) => {
                                  onBlur={verifying_el} />
                     {stateVerifyingValue.phone && <span className={'errorinfotext'}>Телефон заполнена не верно</span>}
                 </div>
+                <div className={'rolefields'}>
+                    <label title="Должность" >Должность:</label>
+                    <select name="role"
+                            defaultValue={elementsFormValue.role}
+                            placeholder="Выберите должность"
+                            onChange={_onChange}>
 
-                <div className={'arh_worckers'}>
-                    <div className={'rolefields'}>
-                        <label title="Должность" >Должность:</label>
-                        <select name="role"
-                                defaultValue={elementsFormValue.role}
-                                placeholder="Выберите должность"
-                                onChange={_onChange}>
-
-                            <option key="driver"
-                                    value="driver">
-                                {translatorRU_role['driver']}
-                            </option>
-                            <option key="waiter"
-                                    value="waiter">
-                                {translatorRU_role['waiter']}
-                            </option>
-                            <option key="cook"
-                                    value="cook">
-                                {translatorRU_role['cook']}
-                            </option>
-                        </select>
-                    </div>
-                    <div className={'archivefield'}>
-                        <span className={'icon'}>В архиве:</span>
-                        <input autoComplete="off"
-                               type="checkbox"
-                               id={'archive_el'}
-                               name="isArchive"
-                               defaultChecked={elementsFormValue.isArchive}
-                               onChange={_onChange_}
-                        />
-                        <label htmlFor={'archive_el'} title="В архиве" ></label>
-                    </div>
+                        <option key="driver"
+                                value="driver">
+                            {translatorRU_role['driver']}
+                        </option>
+                        <option key="waiter"
+                                value="waiter">
+                            {translatorRU_role['waiter']}
+                        </option>
+                        <option key="cook"
+                                value="cook">
+                            {translatorRU_role['cook']}
+                        </option>
+                    </select>
+                </div>
+                <div className={'archivefield'}>
+                    <span className={'icon'}>В архиве:</span>
+                    <input autoComplete="off"
+                           type="checkbox"
+                           id={'archive_el'}
+                           name="isArchive"
+                           defaultChecked={elementsFormValue.isArchive}
+                           onChange={_onChange_}
+                    />
+                    <label htmlFor={'archive_el'} title="В архиве" ></label>
                 </div>
                 <div className={'save'}>
                     <input name="id" type="hidden" defaultValue={id} />
